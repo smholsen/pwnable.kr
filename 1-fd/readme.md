@@ -1,4 +1,4 @@
-# 1 - [fd]
+# 1 - fd
 The first challenge from pwnable.kr
 
 ## Description
@@ -51,14 +51,14 @@ int main(int argc, char* argv[], char* envp[]){
 
 ```
 
-The first if check verifies using the argument counter that the argument vector contains more than 2 elements. Thus checking if we have passed anything as input. Further, the program uses atoi() which turns our input into an int, subtracts 0x1234 from it, and stores it in our fd variable. 
-Next the program reads from our filedescriptor, defined by our fd variable, into the 32 byte char buffer, and limits it by 32 byte. (In turn not allowing for any overflow attacks, as it corresponds to the allocated size). 
-We can then lookup the string comparator function strcmp, and see that it will return 0 if the compared strings are equal. (resolving to false). If we can use this to enter the if statement, we see that the program will cat the content of the flag using the command processor. 
-This is good news for us, as we now know that all we need to do is to make the read function use a file descriptor where we can input a string that will let us enter the if statement. 
+The first if check verifies using the argument counter that the argument vector contains more than 2 elements. Thus checking if we have passed anything as input. Further, the program uses atoi() which turns our input into an int, subtracts 0x1234 from it, and stores it in our fd variable.
+Next the program reads from our filedescriptor, defined by our fd variable, into the 32 byte char buffer, and limits it by 32 byte. (In turn not allowing for any overflow attacks, as it corresponds to the allocated size).
+We can then lookup the string comparator function strcmp, and see that it will return 0 if the compared strings are equal. (resolving to false). If we can use this to enter the if statement, we see that the program will cat the content of the flag using the command processor.
+This is good news for us, as we now know that all we need to do is to make the read function use a file descriptor where we can input a string that will let us enter the if statement.
 
 If we look up Linux File Descriptors we can find that the integer value 0 will resolve to the *Standard input, (stdin)*.
 
-Ok, so if we can ensure that fd == 0, and provide the string "LETMEWIN", (the newline is appended), to stdin, we will hopefully be able to read the flag. 
+Ok, so if we can ensure that fd == 0, and provide the string "LETMEWIN", (the newline is appended), to stdin, we will hopefully be able to read the flag.
 We know that whatever integer we provide as an argument to the program will be subtracted by hex 1234 before the read function is executed, so we will need to give the exact same value in, (as integer). 0x1234 corresponds to an integer value of 4660. Then we simply pipe the string to the program.
 
 ### Lets try
