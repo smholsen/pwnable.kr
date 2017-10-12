@@ -164,7 +164,7 @@ Breakpoint 1, 0x0804852b in func ()
 0xffffcd80:	0xcafebabe	0xffffce00	0xffffce4c	0x080485c1
 ```
 
-## Awesome :)
+## Awesome (•̀ᴗ•́)و ̑̑
 
 Lets try and feed it to the ctf server.
 

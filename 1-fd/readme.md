@@ -69,3 +69,7 @@ good job :)
 mommy! I think I know what a file descriptor is!!
 
 ```
+
+( •_•)
+( •_•)>⌐■-■
+(⌐■_■)
